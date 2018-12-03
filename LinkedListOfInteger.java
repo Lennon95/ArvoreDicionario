@@ -1,18 +1,18 @@
 
-public class LinkedListOfInteger {
+public class LinkedListOfInteger<T> {
 
     // Classe interna Node
     private class Node {
 
-        public Integer element;
+        public T element;
         public Node next;
 
-        public Node(Integer element) {
+        public Node(T element) {
             this.element = element;
             next = null;
         }
         
-        public Node(Integer element, Node next) {
+        public Node(T element, Node next) {
             this.element = element;
             this.next = next;
         }        
@@ -39,7 +39,7 @@ public class LinkedListOfInteger {
      *
      * @param element elemento a ser adicionado ao final da lista
      */
-    public void add(Integer element) {
+    public void add(T element) {
         Node aux = new Node(element);
         if (head == null) {
             head = aux;
@@ -57,7 +57,7 @@ public class LinkedListOfInteger {
      * @param element elemento a ser inserido
      * @throws IndexOutOfBoundsException se (index < 0 || index > size())
      */
-    public void add(int index, Integer element) {
+    public void add(int index, T element) {
         if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException();
         }
@@ -90,7 +90,7 @@ public class LinkedListOfInteger {
      * @return o elemento da posicao especificada
      * @throws IndexOutOfBoundsException se (index < 0 || index >= size())
      */
-    public Integer get(int index) {
+    public T get(int index) {
         if ((index < 0) || (index >= count)) {
             throw new IndexOutOfBoundsException();
         }
@@ -112,7 +112,7 @@ public class LinkedListOfInteger {
      * @return o elemento armazenado anteriormente na posicao da lista
      * @throws IndexOutOfBoundsException se (index < 0 || index >= size())
      */
-    public Integer set(int index, Integer element) {
+    public T set(int index, T element) {
         if ((index < 0) || (index >= count)) {
             throw new IndexOutOfBoundsException();
         }
@@ -120,7 +120,7 @@ public class LinkedListOfInteger {
         for (int i = 0; i < index; i++) {
             aux = aux.next;
         }
-        Integer tmp = aux.element;
+        T tmp = aux.element;
         aux.element = element;
         return tmp;
 
@@ -204,7 +204,7 @@ public class LinkedListOfInteger {
      * @return o elemento que foi removido da lista
      * @throws IndexOutOfBoundsException se (index < 0 || index >= size())
      */
-    public Integer removeByIndex(int index) {
+    public T removeByIndex(int index) {
         if (index < 0 || index >= count) {
             throw new IndexOutOfBoundsException();
         }
@@ -224,7 +224,7 @@ public class LinkedListOfInteger {
             aux = aux.next;
             c++;
         }
-        Integer element = aux.next.element;
+        T element = aux.next.element;
         if (tail == aux.next) {
             tail = aux;
         }

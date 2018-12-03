@@ -2,16 +2,16 @@
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class GeneralTreeOfInteger {
+public class GeneralTreeOfInteger<T>{
 
     // Classe interna Node
     private class Node {
 
         public Node father;
-        public Integer element;
+        public T element;
         public LinkedList<Node> subtrees;
-
-        public Node(Integer element) {
+        
+        public Node(T element) {
             father = null;
             this.element = element;
             subtrees = new LinkedList<>();
@@ -50,21 +50,21 @@ public class GeneralTreeOfInteger {
         count = 0;
     }
 
-    public Integer getRoot() {
+    public T getRoot() {
         if (isEmpty()) {
             throw new EmptyTreeException();
         }
         return root.element;
     }
 
-    public void setRoot(Integer element) {
+    public void setRoot(T element) {
         if (isEmpty()) {
             throw new EmptyTreeException();
         }
         root.element = element;
     }
 
-    public boolean isRoot(Integer element) {
+    public boolean isRoot(T element) {
         if (root != null) {
             if (root.element.equals(element)) {
                 return true;
@@ -86,7 +86,7 @@ public class GeneralTreeOfInteger {
         count = 0;
     }
 
-    public Integer getParent(Integer element) {
+    public T getParent(T element) {
         Node n = searchNodeRef(element, root);
         if (n == null || n.father == null) {
             return null;
@@ -95,12 +95,12 @@ public class GeneralTreeOfInteger {
         }
     }
 
-    public boolean contains(Integer element) {
+    public boolean contains(T element) {
         Node nAux = searchNodeRef(element, root);
         return (nAux != null);
     }
 
-    public boolean isExternal(Integer element) {
+    public boolean isExternal(T element) {
         Node n = searchNodeRef(element, root);
         if (n != null) {
             return n.getSubtreesSize() == 0;
@@ -108,7 +108,7 @@ public class GeneralTreeOfInteger {
         return false;
     }
 
-    public boolean isInternal(Integer element) {
+    public boolean isInternal(T element) {
         Node n = searchNodeRef(element, root);
         if (n != null) {
             return n.getSubtreesSize() > 0;
@@ -116,7 +116,7 @@ public class GeneralTreeOfInteger {
         return false;
     }
 
-    private Node searchNodeRef(Integer element, Node target) {
+    private Node searchNodeRef(T element, Node target) {
         Node res = null;
         if (target != null) {
             if (element.equals(target.element)) {
@@ -134,7 +134,7 @@ public class GeneralTreeOfInteger {
         return res;
     }
 
-    public boolean add(Integer element, Integer father) {
+    public boolean add(T element, T father) {
         Node n = new Node(element);
         Node nAux = null;
         boolean res = false;
@@ -146,7 +146,7 @@ public class GeneralTreeOfInteger {
             root = n;   //Atualiza a raiz
             res = true;
             count++;
-        } else {        //Insere no meio da Árvore
+        } else {        //Insere no meio da Ã�rvore
             nAux = searchNodeRef(father, root);
             if (nAux != null) {
                 nAux.addSubtree(n);
@@ -158,7 +158,7 @@ public class GeneralTreeOfInteger {
         return res;
     }
 
-    public boolean removeBranch(Integer element) {
+    public boolean removeBranch(T element) {
         Node nAux = null;
         Node father = null;
         boolean rem = false;
@@ -231,7 +231,7 @@ public class GeneralTreeOfInteger {
         return lista;
     }
     
-    public int level(Integer element) {
+    public int level(T element) {
             Node n = this.searchNodeRef(element, root);
             if (n==null)
                 throw new NoSuchElementException();
