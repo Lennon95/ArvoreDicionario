@@ -135,7 +135,22 @@ public class GeneralTreeOfInteger<T>{
         }
         return res;
     }
-      
+     
+     //mesma coisa que o searchNodeRef, porem nao verifica ele mesmo
+     private Node searchNodeRef2(T element, Node target) {
+         Node res = null;
+         if (target != null) {
+                 Node aux = null;
+                 int i = 0;
+                 while ((aux == null) && (i < target.getSubtreesSize())) {
+                     aux = searchNodeRef(element, target.getSubtree(i));
+                     i++;
+                 }
+                 res = aux;             
+         }
+         return res;
+     }
+          
     public boolean add(T element, T father) {
         Node n = new Node(element);
         Node nAux = null;
@@ -150,15 +165,27 @@ public class GeneralTreeOfInteger<T>{
             count++;
         } else {        //Insere no meio da Ã�rvore
             nAux = searchNodeRef(father, root);
-            int i=1;
-            if (nAux != null && searchNodeRef(element, nAux)==null) 
+            Node nAux2 = searchNodeRef2(nAux.element, nAux);
+         
+            if (nAux != null && searchNodeRef(element, nAux)==null && nAux2==null)
+            //ve se nAux existe //verifica se ja nao existe o elemento no nodo //verifica se nao existe um outro nodo com mesmo valor mais abaixo
             {                	
                 nAux.addSubtree(n);
                 n.father = nAux;
                 res = true;
-                count++;                
+                count++;     
+                System.out.println("1) letra: " + n.element + " pai: " + n.father.element);
             }
-        }        
+            else if(nAux2!=null)
+            {          	
+            	nAux2.addSubtree(n);            	
+                n.father = nAux2;
+                res = true;
+                count++;     
+                System.out.println("2) letra: " + n.element + " pai: " + n.father.element);
+            }
+        }  
+       
         return res;
     }
 
