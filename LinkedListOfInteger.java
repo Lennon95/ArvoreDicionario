@@ -271,6 +271,7 @@ public class LinkedListOfInteger<T> {
         return false;
     }
 
+    
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();

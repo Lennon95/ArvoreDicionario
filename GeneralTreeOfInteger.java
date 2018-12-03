@@ -1,4 +1,6 @@
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
@@ -33,7 +35,7 @@ public class GeneralTreeOfInteger<T>{
             }
             return subtrees.get(i);
         }
-
+               
         public int getSubtreesSize() {
             return subtrees.size();
         }
@@ -115,8 +117,8 @@ public class GeneralTreeOfInteger<T>{
         }
         return false;
     }
-
-    private Node searchNodeRef(T element, Node target) {
+    
+     private Node searchNodeRef(T element, Node target) {
         Node res = null;
         if (target != null) {
             if (element.equals(target.element)) {
@@ -133,7 +135,7 @@ public class GeneralTreeOfInteger<T>{
         }
         return res;
     }
-
+      
     public boolean add(T element, T father) {
         Node n = new Node(element);
         Node nAux = null;
@@ -148,11 +150,13 @@ public class GeneralTreeOfInteger<T>{
             count++;
         } else {        //Insere no meio da Ã�rvore
             nAux = searchNodeRef(father, root);
-            if (nAux != null) {
+            int i=1;
+            if (nAux != null && searchNodeRef(element, nAux)==null) 
+            {                	
                 nAux.addSubtree(n);
                 n.father = nAux;
                 res = true;
-                count++;
+                count++;                
             }
         }        
         return res;

@@ -12,28 +12,30 @@ public class App {
         
         //Dic.imprime();
         
-        GeneralTreeOfInteger a = new GeneralTreeOfInteger();
-        a.add("", null);
+        GeneralTreeOfInteger arvore = new GeneralTreeOfInteger();
+        arvore.add("", null);
+        
         //for(int j=0; j<Dic.keys().size(); j++) 
         for(int j=0; j<3; j++) 
         {        	
 	        letras = Dic.keys().get(j).toCharArray();
 	        System.out.println(letras);
-	        
-	        a.add(letras[0], "");
+
+	        if(!arvore.contains(letras[0]))
+	        	arvore.add(letras[0], "");
 	        for(int i=1; i<letras.length; i++)
 	        {
-	        	if(!a.contains(letras[i]))
-	        	a.add(letras[i], letras[i-1]);
+	        		arvore.add(letras[i], letras[i-1]);
+
 	        }
 	    }
         
+
+        //System.out.println("Elementos da arvore: caminhamento em largura:");
+        System.out.println(arvore.positionsWidth());
         
-        System.out.println("Elementos da arvore: caminhamento em largura:");
-        System.out.println(a.positionsWidth());
-        
-        System.out.println("Elementos da arvore: caminhamento pre:");
-        System.out.println(a.positionsPre());
+//        System.out.println("Elementos da arvore: caminhamento pre:");
+//       System.out.println(arvore.positionsPre());
 
         //System.out.println(Dic.getValor("Agatha"));
         System.out.println(Dic.keys());
