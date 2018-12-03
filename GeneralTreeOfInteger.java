@@ -8,14 +8,16 @@ public class GeneralTreeOfInteger<T>{
 
     // Classe interna Node
     private class Node {
-
+	
         public Node father;
         public T element;
+	public boolean marked;
         public LinkedList<Node> subtrees;
         
         public Node(T element) {
             father = null;
             this.element = element;
+	    this.marked = false;
             subtrees = new LinkedList<>();
         }
 
@@ -118,7 +120,7 @@ public class GeneralTreeOfInteger<T>{
         return false;
     }
     
-     private Node searchNodeRef(T element, Node target) {
+    private Node searchNodeRef(T element, Node target) {
         Node res = null;
         if (target != null) {
             if (element.equals(target.element)) {
@@ -135,9 +137,33 @@ public class GeneralTreeOfInteger<T>{
         }
         return res;
     }
+
+    public void addArray(T[] elements) {
+	int i = 0;
+	Node aux = root;
+	Node refNode = root;
+
+ 	while ((aux = searchNodeRef(elements[i], aux)) != null && i < elements.length) {
+		refNode = aux;
+		i++;
+	}
+	
+	if (i == elements.length && aux != null) {
+		aux.marked = true;
+	} else {
+		while (i < elements.length) {
+			aux = new Node (elements[i]);
+			aux.father = refNode;
+			aux.marked = ((i +1) == elements.length) ? true : false;
+			refNode.addSubtree(aux);
+			refNode = aux;
+			
+		}	
+	}
+    }
      
-     //mesma coisa que o searchNodeRef, porem nao verifica ele mesmo
-     private Node searchNodeRef2(T element, Node target) {
+    //mesma coisa que o searchNodeRef, porem nao verifica ele mesmo
+    private Node searchNodeRef2(T element, Node target) {
          Node res = null;
          if (target != null) {
                  Node aux = null;
@@ -151,7 +177,7 @@ public class GeneralTreeOfInteger<T>{
          return res;
      }
           
-    public boolean add(T element, T father) {
+/*    public boolean add(T element, T father) {
         Node n = new Node(element);
         Node nAux = null;
         boolean res = false;
@@ -187,7 +213,7 @@ public class GeneralTreeOfInteger<T>{
         }  
        
         return res;
-    }
+    }*/
 
     public boolean removeBranch(T element) {
         Node nAux = null;
