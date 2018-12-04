@@ -141,9 +141,9 @@ public class GeneralTreeOfInteger<T>{
 
     /**
      * Retorna uma ArrayList de vetores do tipo T
-     * que iniciam com T[] elements
-     * Cada vetor T consiste numa 'palavra' do dicionario.
-     *
+     * que iniciam com T[] elements;
+     * Cada vetor T consiste numa 'palavra' do dicionario;
+     * O metodo tem complexidade aproximada O(n^3)
      * 
      * @param	T[]		os elementos de pesquisa
      * @return	ArrayList	os vetores de palavras
@@ -163,8 +163,8 @@ public class GeneralTreeOfInteger<T>{
 
     /**
      * Retorna uma ArrayList de vetores do tipo T
-     * que iniciam com T[] elements.
-     *
+     * que iniciam com T[] elements;
+     * O metodo tem complexidade aproximada O(n^2)
      *  
      * @param	T[]		os elementos de pesquisa
      * @param	Node		o nodo do ultimo elemento T[] elements
@@ -188,8 +188,8 @@ public class GeneralTreeOfInteger<T>{
     }
 
     /**
-     * Adiciona os elementos na arvore e marca o nodo do ultimo elemento.
-     *
+     * Adiciona os elementos na arvore e marca o nodo do ultimo elemento;
+     * O metodo tem complexidade aproximada de O(n^2)
      *  
      * @param	T[]		os elementos para adicionar
      * @param	Node		o nodo do ultimo elemento T[] elements
@@ -236,24 +236,13 @@ public class GeneralTreeOfInteger<T>{
             count++;
         } else {        //Insere no meio da Ã�rvore
             nAux = searchNodeRef(father, root);
-            Node nAux2 = searchNodeRef2(nAux.element, nAux);
          
-            if (nAux != null && searchNodeRef(element, nAux)==null && nAux2==null)
-            //ve se nAux existe //verifica se ja nao existe o elemento no nodo //verifica se nao existe um outro nodo com mesmo valor mais abaixo
+            if (nAux != null && searchNodeRef(element, nAux) == null)
             {                	
                 nAux.addSubtree(n);
                 n.father = nAux;
                 res = true;
                 count++;     
-                System.out.println("1) letra: " + n.element + " pai: " + n.father.element);
-            }
-            else if(nAux2!=null)
-            {          	
-            	nAux2.addSubtree(n);            	
-                n.father = nAux2;
-                res = true;
-                count++;     
-                System.out.println("2) letra: " + n.element + " pai: " + n.father.element);
             }
         }  
        
