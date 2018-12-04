@@ -18,7 +18,7 @@ public class App {
 		query = input().chars().mapToObj(c -> (char) c).toArray(Character[]::new);
 
 		String str = consultaPalavras(arvore, query);
-
+		System.out.println(str);
 		boolean v;
 		v=verifica(str);
 
@@ -57,13 +57,13 @@ public class App {
 	}
 
 	public static boolean verifica(String str) {
-		if (str != "") {
+		if (str.equals("")) {
+			System.out.println("Palavra nao encontrada");
+			return false;
+		} else {
 			System.out.println("Palavras encontradas:");
 			System.out.println(str);
 			return true;
-		} else {
-			System.out.println("Palavra não encontrada:");
-			return false;
 		}
 	}
 }
