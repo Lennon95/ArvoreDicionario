@@ -23,7 +23,7 @@ public class App {
 	        
 
         System.out.println("Elementos da arvore: caminhamento em largura:");
-//        System.out.println(arvore.positionsWidth());
+        System.out.println(arvore.positionsWidth());
        arvore.printTreeLevels();
 //        System.out.println("Elementos da arvore: caminhamento pre:");
 //       System.out.println(arvore.positionsPre());

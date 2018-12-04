@@ -150,8 +150,8 @@ public class GeneralTreeOfInteger<T>{
 		System.out.println("Referencia: " + aux.element + " - Total sub-arvores: " + aux.getSubtreesSize() + " - Sub-arvore: " + aux.getSubtree(j).element);
 		if (aux.getSubtree(j).element.equals(elements[i])) {
 			System.out.println("Encontrou nodo: " +aux.getSubtree(j).element);
-			refNode = aux;
 			aux = aux.getSubtree(j);
+			refNode = aux;
 			j = -1;
 			i++;
 		}
