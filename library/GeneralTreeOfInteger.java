@@ -51,8 +51,8 @@ public class GeneralTreeOfInteger<T>{
 
     // Metodos
     public GeneralTreeOfInteger() {
-        root = null;
-        count = 0;
+        root = new Node((T) "");
+        count = 1;
     }
 
     public T getRoot() {
