@@ -51,6 +51,7 @@ public class GeneralTreeOfInteger<T>{
     // Metodos
     public GeneralTreeOfInteger() {
         root = null;
+	//this.add("", null);
         count = 0;
     }
 
@@ -143,11 +144,16 @@ public class GeneralTreeOfInteger<T>{
 	Node aux = root;
 	Node refNode = root;
 
+
+	System.out.println("Adicionando " + elements.toString());
+
  	while ((aux = searchNodeRef(elements[i], aux)) != null && i < elements.length) {
+		System.out.println("Aux = " + aux.element);
 		refNode = aux;
 		i++;
 	}
-	
+
+	System.out.println("Nodo referencia> " + refNode.element);
 	if (i == elements.length && aux != null) {
 		aux.marked = true;
 	} else {
@@ -157,11 +163,18 @@ public class GeneralTreeOfInteger<T>{
 			aux.marked = ((i +1) == elements.length) ? true : false;
 			refNode.addSubtree(aux);
 			refNode = aux;
-			
+			i++;
 		}	
 	}
     }
-     
+    
+    public void printTreeLevels() {
+	Node aux = root.getSubtree(0);
+	for (int i = 0; i < aux.getSubtreesSize(); i++)
+		System.out.print(aux.getSubtree(i).element);
+	System.out.println("");
+    }
+ 
     //mesma coisa que o searchNodeRef, porem nao verifica ele mesmo
     private Node searchNodeRef2(T element, Node target) {
          Node res = null;
@@ -177,7 +190,7 @@ public class GeneralTreeOfInteger<T>{
          return res;
      }
           
-/*    public boolean add(T element, T father) {
+    public boolean add(T element, T father) {
         Node n = new Node(element);
         Node nAux = null;
         boolean res = false;
@@ -213,7 +226,7 @@ public class GeneralTreeOfInteger<T>{
         }  
        
         return res;
-    }*/
+    }
 
     public boolean removeBranch(T element) {
         Node nAux = null;

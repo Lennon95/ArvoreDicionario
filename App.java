@@ -7,38 +7,29 @@ public class App {
     public static void main(String[] args) throws IOException {
        
         Dicionario Dic = new Dicionario();
-        char[] letras = null;
+        Character[] letras = null;
         System.out.println(Dic);
         
         //Dic.imprime();
         
         GeneralTreeOfInteger arvore = new GeneralTreeOfInteger();
-        arvore.add("", null);
+	arvore.add("", null);
         
-        //for(int j=0; j<Dic.keys().size(); j++) 
-        for(int j=0; j<4; j++) 
-        {        	
-	        letras = Dic.keys().get(j).toCharArray();
-	        System.out.println(letras);
-
-	        if(!arvore.contains(letras[0]))
-	        	arvore.add(letras[0], "");
-	        for(int i=1; i<letras.length; i++)
-	        {
-	        		arvore.add(letras[i], letras[i-1]);
-
-	        }
-	    }
-        
+        for (int j=0; j<5; j++) {
+	        letras = Dic.keys().get(j).chars().mapToObj(c -> (char) c).toArray(Character[]::new);
+		arvore.addArray((Character[]) letras);
+	        System.out.println("Fim da loop " + j + " - " + Dic.keys().get(j)); 
+	}
+	        
 
         System.out.println("Elementos da arvore: caminhamento em largura:");
-        System.out.println(arvore.positionsWidth());
-        
+//        System.out.println(arvore.positionsWidth());
+       arvore.printTreeLevels();
 //        System.out.println("Elementos da arvore: caminhamento pre:");
 //       System.out.println(arvore.positionsPre());
 
         //System.out.println(Dic.getValor("Agatha"));
-        System.out.println(Dic.keys());
+  //      System.out.println(Dic.keys());
         
         
     }
