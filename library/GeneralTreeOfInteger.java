@@ -158,6 +158,7 @@ public class GeneralTreeOfInteger<T>{
 		}	
 		if (i == elements.length) break;
 	}
+	if (elements.length > 0 && aux == root) return new ArrayList<T[]>();
 	return getMarkedArrays(elements, aux);
     }
 
