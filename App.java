@@ -61,7 +61,7 @@ public class App {
 
 	public static boolean verifica(String str) {
 		if (str.equals("")) {
-			System.out.println("Palavra nao encontrada");
+			System.out.println("Palavra nao encontrada.");
 			return false;
 		} else {
 			System.out.println("Palavras encontradas:");
