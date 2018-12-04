@@ -16,7 +16,7 @@ public class Dicionario {
 	/**
 	 * Le o arquivo CSV e popula o Dic
 	 *
-	 * @params
+	 * @param
 	 * @return 
 	 */  
 	private void le() throws IOException 
@@ -40,7 +40,7 @@ public class Dicionario {
 	 * Retorna o significado de uma palavra-chave
 	 * O metodo tem complexidade O(1)
 	 *
-	 * @params String a palavra-chave do Map
+	 * @param String a palavra-chave do Map
 	 * @return String o significado da palavra
 	 */  
 	public String getValor(String key)
@@ -52,7 +52,7 @@ public class Dicionario {
 	 * Retorna uma lista das palavras-chave do dicionario
 	 * O metodo tem complexidade O(1)
 	 * 
-	 * @params
+	 * @param
 	 * @return List	as palavras-chave do dicionario
 	 */  
 	public List<String> keys()
