@@ -12,19 +12,22 @@ public class App {
 		GeneralTree arvore = new GeneralTree();
 		carregaDicio(dic, arvore);	
 
-		Character[] query;// = new Character[] {'I', 's'};
-
-		System.out.println("Digite a palavra a ser pesquisada: ");
-		query = input().chars().mapToObj(c -> (char) c).toArray(Character[]::new);
-
-		String str = consultaPalavras(arvore, query);
-		System.out.println(str);
-		boolean v;
-		v=verifica(str);
-
-		if (v) {
-			System.out.println("Digite uma palavra da lista para ver significado: ");
-			System.out.println(dic.getValor(input()));
+		Character[] query;
+		while (true) {	
+			System.out.println("Digite a palavra a ser pesquisada ou 'sair' para sair: ");
+			String inp = input();
+			if (inp.equals("sair")) break;
+			query = inp.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
+			String str = consultaPalavras(arvore, query);
+			if (verifica(str)) {
+				System.out.println("Digite uma palavra da lista para ver significado: ");
+				inp = input();
+				if (dic.getValor(inp) != null) {
+					System.out.println("Palavra: " + dic.getValor(inp));
+				} else {
+					System.out.println("Palavra nao encontrada.");
+				}
+			}
 		}
 	}
 
