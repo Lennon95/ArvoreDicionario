@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.lang.StringBuilder;
+
+
 
 public class App {
 
@@ -31,6 +34,15 @@ public class App {
         //System.out.println(Dic.getValor("Agatha"));
   //      System.out.println(Dic.keys());
         
-        
+	T[] query = new T[] {'A', 'l'};
+        ArrayList<Character[]> search = arvore.searchTree(query);
+	strBuild str = new StringBuilder("Palavras encontradas: \n");
+	for (int i = 0; i < search.size(); i++) {
+		for (Character c : search.get(i))
+			str.append(c.toString);
+		str.append("\n");
+	}
+
+	System.out.println(str);
     }
 }

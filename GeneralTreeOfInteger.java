@@ -139,6 +139,37 @@ public class GeneralTreeOfInteger<T>{
         return res;
     }
 
+    public ArrayList<T[]> searchTree(T[] elements]) {
+	Node aux = root;
+	for (int i = 0, j = 0; j < aux.getSubtreesSize(); j++) {
+		if (aux.getSubtree(j).element.equals(elements[i])) {
+			aux = aux.getSubtree(j);
+			i++;
+			j = -1;
+		}	
+		if (i == elements.length) break;
+	}
+
+	return getMarkedArrays(elements, aux);
+    }
+
+    private ArrayList<T[]> getMarkedArrays(T[] elements, Node ref) {
+	ArrayList<T[]> result = new ArrayList<T[]>();
+	for (int i = 0; i < ref.getSubtreesSize(); i++) {
+		T[] ans = (T[])new Object[elements.length + 1];
+		Node aux = ref.getSubtree(i);
+		System.arraycopy(elements, 0, ans, 0, elements.length);
+		ans[elements.length] = aux.element;
+	
+		if (aux.marked) 
+			result.add(ans);
+	
+		if (aux.getSubtreesSize() > 0)
+			result.addAll(getMarkedArrays(ans, aux));
+	}
+	return result;
+    }
+
     public void addArray(T[] elements) {
 	int i = 0;
 	Node aux = root;
@@ -165,7 +196,7 @@ public class GeneralTreeOfInteger<T>{
 		while (i < elements.length) {
 			System.out.println("-= adicionando nodo: " + elements[i]);
 			aux = new Node (elements[i]);
-			aux.father = refNode;
+		 	aux.father = refNode;
 			//aux.marked = ((i +1) == elements.length) ? true : false;
 			if ((i + 1) == elements.length) {
 				aux.marked = true;
