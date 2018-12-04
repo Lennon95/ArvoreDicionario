@@ -12,7 +12,7 @@ public class GeneralTreeOfInteger<T>{
 	
         public Node father;
         public T element;
-	public boolean marked;
+	public boolean marked; // Indica se um nodo eh fim de palavra
         public LinkedList<Node> subtrees;
         
         public Node(T element) {
@@ -52,7 +52,6 @@ public class GeneralTreeOfInteger<T>{
     // Metodos
     public GeneralTreeOfInteger() {
         root = null;
-	//this.add("", null);
         count = 0;
     }
 
@@ -140,6 +139,15 @@ public class GeneralTreeOfInteger<T>{
         return res;
     }
 
+    /**
+     * Retorna uma ArrayList de vetores do tipo T
+     * que iniciam com T[] elements
+     * Cada vetor T consiste numa 'palavra' do dicionario.
+     *
+     * 
+     * @param	T[]		os elementos de pesquisa
+     * @return	ArrayList	os vetores de palavras
+     */
     public ArrayList<T[]> searchTree(T[] elements) {
 	Node aux = root;
 	for (int i = 0, j = 0; j < aux.getSubtreesSize(); j++) {
@@ -153,6 +161,15 @@ public class GeneralTreeOfInteger<T>{
 	return getMarkedArrays(elements, aux);
     }
 
+    /**
+     * Retorna uma ArrayList de vetores do tipo T
+     * que iniciam com T[] elements.
+     *
+     *  
+     * @param	T[]		os elementos de pesquisa
+     * @param	Node		o nodo do ultimo elemento T[] elements
+     * @return	ArrayList	os vetores de palavras
+     */
     private ArrayList<T[]> getMarkedArrays(T[] elements, Node ref) {
 	ArrayList<T[]> result = new ArrayList<T[]>();
 	for (int i = 0; i < ref.getSubtreesSize(); i++) {
@@ -170,6 +187,13 @@ public class GeneralTreeOfInteger<T>{
 	return result;
     }
 
+    /**
+     * Adiciona os elementos na arvore e marca o nodo do ultimo elemento.
+     *
+     *  
+     * @param	T[]		os elementos para adicionar
+     * @param	Node		o nodo do ultimo elemento T[] elements
+     */
     public void addArray(T[] elements) {
 	int i = 0;
 	Node aux = root;
@@ -197,23 +221,7 @@ public class GeneralTreeOfInteger<T>{
 		}	
 	}
     }
-    
- 
-    //mesma coisa que o searchNodeRef, porem nao verifica ele mesmo
-    private Node searchNodeRef2(T element, Node target) {
-         Node res = null;
-         if (target != null) {
-                 Node aux = null;
-                 int i = 0;
-                 while ((aux == null) && (i < target.getSubtreesSize())) {
-                     aux = searchNodeRef(element, target.getSubtree(i));
-                     i++;
-                 }
-                 res = aux;             
-         }
-         return res;
-     }
-          
+   
     public boolean add(T element, T father) {
         Node n = new Node(element);
         Node nAux = null;
