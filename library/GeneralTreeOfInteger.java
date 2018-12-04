@@ -1,3 +1,4 @@
+package library;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -149,7 +150,6 @@ public class GeneralTreeOfInteger<T>{
 		}	
 		if (i == elements.length) break;
 	}
-
 	return getMarkedArrays(elements, aux);
     }
 
@@ -175,12 +175,8 @@ public class GeneralTreeOfInteger<T>{
 	Node aux = root;
 	Node refNode = root;
 
-	System.out.println("**** Adicionando " + elements.toString());
-
  	for (int j = 0; j < aux.getSubtreesSize(); j++) {
-		System.out.println("Referencia: " + aux.element + " - Total sub-arvores: " + aux.getSubtreesSize() + " - Sub-arvore: " + aux.getSubtree(j).element);
 		if (aux.getSubtree(j).element.equals(elements[i])) {
-			System.out.println("Encontrou nodo: " +aux.getSubtree(j).element);
 			aux = aux.getSubtree(j);
 			refNode = aux;
 			j = -1;
@@ -188,20 +184,13 @@ public class GeneralTreeOfInteger<T>{
 		}
 	}
 
-	System.out.println("-= NODO REFERENCIA> " + refNode.element);
 	if (i == elements.length && aux != null) {
-		System.out.println("** FIM DA PALAVRA. Nao eh necessario adicionar. Marcando nodo referencia. **");	
 		aux.marked = true;
 	} else {
 		while (i < elements.length) {
-			System.out.println("-= adicionando nodo: " + elements[i]);
 			aux = new Node (elements[i]);
 		 	aux.father = refNode;
-			//aux.marked = ((i +1) == elements.length) ? true : false;
-			if ((i + 1) == elements.length) {
-				aux.marked = true;
-				System.out.println("-=-=Nodo " + aux.element + " marca o fim da palavra");
-			}
+			aux.marked = ((i +1) == elements.length) ? true : false;
 			refNode.addSubtree(aux);
 			refNode = aux;
 			i++;
@@ -209,12 +198,6 @@ public class GeneralTreeOfInteger<T>{
 	}
     }
     
-    public void printTreeLevels() {
-	Node aux = root.getSubtree(0);
-	for (int i = 0; i < aux.getSubtreesSize(); i++)
-		System.out.print(aux.getSubtree(i).element);
-	System.out.println("");
-    }
  
     //mesma coisa que o searchNodeRef, porem nao verifica ele mesmo
     private Node searchNodeRef2(T element, Node target) {

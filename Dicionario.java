@@ -1,16 +1,15 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import library.*;
 
 public class Dicionario {
 
 	private TreeMap<String, String> Dic;
 	private Scanner sc;
-	private ArrayList<String> keys;
 	
 	public Dicionario() throws IOException {
 		Dic = new TreeMap<String, String>();
-		keys = new ArrayList<>();
 		le();
 	}
 	
@@ -28,7 +27,6 @@ public class Dicionario {
 			{
 				Dic.put(palavra_desc[0], palavra_desc[1]);							
 			}
-			keys.add(palavra_desc[0]);
 		}					
 	}
 	
@@ -44,9 +42,11 @@ public class Dicionario {
 		return Dic.get(a);
 	}
 	
-	public ArrayList<String> keys()
-	{		
-		return keys;
+	public List<String> keys()
+	{
+		List<String> result = new ArrayList<String>();
+		result.addAll(this.Dic.keySet());
+		return result;
 	}
 		
 }
