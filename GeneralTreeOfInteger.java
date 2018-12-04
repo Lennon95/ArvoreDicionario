@@ -139,7 +139,7 @@ public class GeneralTreeOfInteger<T>{
         return res;
     }
 
-    public ArrayList<T[]> searchTree(T[] elements]) {
+    public ArrayList<T[]> searchTree(T[] elements) {
 	Node aux = root;
 	for (int i = 0, j = 0; j < aux.getSubtreesSize(); j++) {
 		if (aux.getSubtree(j).element.equals(elements[i])) {

@@ -34,12 +34,12 @@ public class App {
         //System.out.println(Dic.getValor("Agatha"));
   //      System.out.println(Dic.keys());
         
-	T[] query = new T[] {'A', 'l'};
-        ArrayList<Character[]> search = arvore.searchTree(query);
-	strBuild str = new StringBuilder("Palavras encontradas: \n");
+	Object[] query = new Object[] {'A'};
+        ArrayList<Object[]> search = arvore.searchTree(query);
+	StringBuilder str = new StringBuilder("Palavras encontradas: \n");
 	for (int i = 0; i < search.size(); i++) {
-		for (Character c : search.get(i))
-			str.append(c.toString);
+		for (Object o : search.get(i))
+			str.append(o);
 		str.append("\n");
 	}
 
